@@ -14,24 +14,29 @@ const merdekaTemplate: RppTemplate = {
   id: "kurikulum-merdeka",
   label: "Kurikulum Merdeka",
   shortLabel: "Merdeka",
-  description: "Template dengan struktur CP, TP, ATP, Materi, dan asesmen yang cocok untuk drafting cepat berbasis kurikulum merdeka.",
+  description: "Template dengan struktur CP, TP, ATP, diferensiasi, asesmen formatif, refleksi, dan tindak lanjut yang cocok untuk drafting RPP Kurikulum Merdeka.",
   sections: [
     "Identitas",
     "Capaian Pembelajaran (CP)",
     "Tujuan Pembelajaran (TP)",
     "Alur Tujuan Pembelajaran (ATP)",
-    "Metode Pembelajaran",
-    "Media/Alat/Bahan",
+    "Materi / Elemen yang Dipelajari",
+    "Karakteristik Peserta Didik",
+    "Metode / Model / Pendekatan Pembelajaran",
+    "Media / Alat / Bahan / Sumber Belajar",
+    "Strategi Diferensiasi",
+    "Langkah-Langkah Pembelajaran",
     "Asesmen",
-    "Materi",
+    "Refleksi",
+    "Tindak Lanjut / Remedial / Pengayaan",
   ],
   promptGuidance: [
-    "Gunakan istilah CP, TP, dan ATP secara konsisten.",
-    "Buat susunan markdown yang rapi dan mudah diedit guru.",
-    "Gunakan tabel markdown untuk bagian identitas dan rincian asesmen bila membantu kejelasan.",
-    "Jangan tambahkan section di luar struktur wajib kecuali benar-benar diperlukan untuk koherensi dokumen.",
-    "Utamakan kalimat yang ringkas, konkret, dan siap dipakai sebagai draft kerja guru.",
-    "Usahakan susunan dokumen terasa seperti format administrasi sekolah: identitas ringkas, isi utama jelas, dan asesmen mudah dibaca.",
+    "Gunakan istilah CP, TP, dan ATP secara konsisten sebagai kerangka utama dokumen.",
+    "Tekankan pembelajaran yang fleksibel, kontekstual, dan responsif terhadap kebutuhan peserta didik.",
+    "Tampilkan strategi diferensiasi secara nyata, bukan hanya disebutkan sepintas.",
+    "Asesmen harus menonjolkan asesmen diagnostik, formatif, dan sumatif tanpa membagi struktur secara kaku menjadi sikap, pengetahuan, dan keterampilan.",
+    "Jika relevan, selaraskan pembelajaran dengan penguatan Profil Pelajar Pancasila tanpa menjadikannya bagian yang dipaksakan.",
+    "Gunakan susunan markdown yang rapi, mudah dibaca di web, dan mudah diedit ulang guru.",
   ],
   emptyMarkdown: `# RPP - Kurikulum Merdeka
 
@@ -49,7 +54,7 @@ const merdekaTemplate: RppTemplate = {
 
 ## Capaian Pembelajaran (CP)
 
-Tuliskan capaian pembelajaran yang menjadi acuan.
+Tuliskan CP yang menjadi acuan pembelajaran.
 
 ## Tujuan Pembelajaran (TP)
 
@@ -57,19 +62,49 @@ Tuliskan tujuan pembelajaran yang ingin dicapai.
 
 ## Alur Tujuan Pembelajaran (ATP)
 
-Tuliskan alur singkat pembelajaran atau tahapan pembelajaran utama.
+Tuliskan alur tujuan pembelajaran atau konteks turunan ATP yang relevan.
 
-## Metode Pembelajaran
+## Materi / Elemen yang Dipelajari
+
+- Materi inti
+- Elemen atau konsep utama
+- Keterkaitan dengan konteks pembelajaran
+
+## Karakteristik Peserta Didik
+
+Tuliskan karakteristik umum peserta didik yang perlu diperhatikan dalam pembelajaran.
+
+## Metode / Model / Pendekatan Pembelajaran
 
 - Model pembelajaran
 - Metode pembelajaran
-- Langkah penggunaan model secara singkat
+- Pendekatan pembelajaran
 
-## Media/Alat/Bahan
+## Media / Alat / Bahan / Sumber Belajar
 
 - Media pembelajaran
 - Alat dan bahan pendukung
 - Sumber belajar utama
+
+## Strategi Diferensiasi
+
+- Diferensiasi konten
+- Diferensiasi proses
+- Diferensiasi produk
+
+## Langkah-Langkah Pembelajaran
+
+### Kegiatan Awal
+
+Tuliskan kegiatan awal pembelajaran.
+
+### Kegiatan Inti
+
+Tuliskan kegiatan inti pembelajaran.
+
+### Kegiatan Penutup
+
+Tuliskan kegiatan penutup pembelajaran.
 
 ## Asesmen
 
@@ -79,9 +114,13 @@ Tuliskan alur singkat pembelajaran atau tahapan pembelajaran utama.
 | Formatif |  |  |
 | Sumatif |  |  |
 
-## Materi
+## Refleksi
 
-Tuliskan materi inti yang akan diajarkan secara ringkas dan terstruktur.
+Tuliskan refleksi guru dan/atau peserta didik yang relevan.
+
+## Tindak Lanjut / Remedial / Pengayaan
+
+Tuliskan rencana tindak lanjut, remedial, atau pengayaan.
 `,
 };
 
@@ -89,22 +128,27 @@ const k13Template: RppTemplate = {
   id: "kurikulum-2013",
   label: "Kurikulum 2013",
   shortLabel: "K-13",
-  description: "Template pembeda untuk K-13 tanpa section Materi, dengan fokus pada kompetensi, tujuan, kegiatan, dan asesmen.",
+  description: "Template formal K-13 dengan struktur KI/KD, indikator, pendekatan saintifik, penilaian per aspek, serta remedial dan pengayaan.",
   sections: [
     "Identitas",
-    "Kompetensi dan Tujuan Pembelajaran",
-    "Pendekatan / Metode Pembelajaran",
-    "Media/Alat/Bahan",
-    "Langkah Pembelajaran",
-    "Asesmen",
+    "Kompetensi Inti (KI)",
+    "Kompetensi Dasar (KD)",
+    "Indikator Pencapaian Kompetensi",
+    "Tujuan Pembelajaran",
+    "Materi Pembelajaran",
+    "Metode / Model / Pendekatan Pembelajaran",
+    "Media / Alat / Bahan / Sumber Belajar",
+    "Langkah-Langkah Pembelajaran",
+    "Penilaian",
+    "Remedial dan Pengayaan",
   ],
   promptGuidance: [
-    "Jangan menambahkan section Materi.",
-    "Gunakan bahasa formal dan struktur yang mudah diedit guru di dokumen Word.",
-    "Gunakan tabel markdown untuk identitas dan asesmen bila membantu kejelasan.",
-    "Fokus pada penyusunan kompetensi, tujuan, kegiatan, dan asesmen secara runtut.",
-    "Buat langkah pembelajaran yang jelas dibagi menjadi Pendahuluan, Kegiatan Inti, dan Penutup.",
-    "Usahakan susunan dokumen terasa seperti format administrasi sekolah yang rapi dan siap print.",
+    "Gunakan KI dan KD sebagai kerangka utama, lalu turunkan indikator dan tujuan pembelajaran secara runtut.",
+    "Gunakan pendekatan pembelajaran saintifik secara eksplisit bila relevan dengan konteks pelajaran.",
+    "Struktur dokumen harus formal, sistematis, dan administratively clear.",
+    "Penilaian harus dipisahkan secara jelas ke dalam sikap, pengetahuan, dan keterampilan.",
+    "Jangan gunakan CP, TP, ATP, atau istilah fase sebagai tulang punggung dokumen.",
+    "Gunakan susunan markdown yang rapi dan mudah diedit ulang dalam dokumen kerja guru.",
   ],
   emptyMarkdown: `# RPP - Kurikulum 2013
 
@@ -120,24 +164,41 @@ const k13Template: RppTemplate = {
 | Alokasi Waktu |  |
 | Topik |  |
 
-## Kompetensi dan Tujuan Pembelajaran
+## Kompetensi Inti (KI)
 
-Tuliskan kompetensi, indikator, dan tujuan pembelajaran yang relevan.
+Tuliskan kompetensi inti yang relevan.
 
-## Pendekatan / Metode Pembelajaran
+## Kompetensi Dasar (KD)
 
-- Pendekatan pembelajaran
+Tuliskan kompetensi dasar yang menjadi acuan.
+
+## Indikator Pencapaian Kompetensi
+
+Tuliskan indikator pencapaian kompetensi yang diturunkan dari KD.
+
+## Tujuan Pembelajaran
+
+Tuliskan tujuan pembelajaran yang ingin dicapai.
+
+## Materi Pembelajaran
+
+- Fakta, konsep, dan prosedur yang dipelajari
+- Pokok materi inti
+- Contoh konteks penerapan
+
+## Metode / Model / Pendekatan Pembelajaran
+
+- Pendekatan saintifik
 - Model pembelajaran
 - Metode pembelajaran utama
-- Strategi pelaksanaan singkat
 
-## Media/Alat/Bahan
+## Media / Alat / Bahan / Sumber Belajar
 
 - Media pembelajaran
 - Alat dan bahan pendukung
 - Sumber belajar utama
 
-## Langkah Pembelajaran
+## Langkah-Langkah Pembelajaran
 
 ### Pendahuluan
 
@@ -151,13 +212,23 @@ Tuliskan kegiatan inti.
 
 Tuliskan kegiatan penutup.
 
-## Asesmen
+## Penilaian
 
-| Aspek | Teknik / Bentuk | Keterangan |
-| --- | --- | --- |
-| Sikap / diagnostik |  |  |
-| Pengetahuan / formatif |  |  |
-| Keterampilan / sumatif |  |  |
+### Penilaian Sikap
+
+Tuliskan bentuk penilaian sikap.
+
+### Penilaian Pengetahuan
+
+Tuliskan bentuk penilaian pengetahuan.
+
+### Penilaian Keterampilan
+
+Tuliskan bentuk penilaian keterampilan.
+
+## Remedial dan Pengayaan
+
+Tuliskan rencana remedial dan pengayaan.
 `,
 };
 

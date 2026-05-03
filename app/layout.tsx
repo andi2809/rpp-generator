@@ -1,11 +1,35 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
-import "@mdxeditor/editor/style.css";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RPP Generator AI - Asisten Pembuat Rencana Pelaksanaan Pembelajaran",
-  description: "Platform AI untuk membantu guru menyusun draf Rencana Pelaksanaan Pembelajaran (RPP) Kurikulum Merdeka dan Kurikulum 2013 secara cepat, terstruktur, dan siap pakai.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.title} | Draft RPP AI untuk Kurikulum Merdeka & K13`,
+    template: `%s | ${siteConfig.title}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  alternates: {
+    canonical: "/",
+  },
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.creator }],
+  creator: siteConfig.creator,
+  publisher: siteConfig.creator,
+  category: "education",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -14,32 +38,38 @@ export const metadata: Metadata = {
     shortcut: "/favicon/favicon.ico",
     apple: "/favicon/apple-touch-icon.png",
   },
-  manifest: "/favicon/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "RPP Generator AI - Asisten Pembuat RPP",
-    description: "Susun draf Rencana Pelaksanaan Pembelajaran (RPP) Kurikulum Merdeka dan Kurikulum 2013 dalam hitungan detik menggunakan kecerdasan buatan.",
-    url: "https://rpp-generator.vercel.app",
-    siteName: "RPP Generator AI",
+    title: `${siteConfig.title} | Draft RPP AI untuk Kurikulum Merdeka & K13`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
-        url: "/assets/rpp-kurikulum-image.png",
+        url: absoluteUrl(siteConfig.ogImage),
         width: 1200,
         height: 630,
-        alt: "Preview RPP Generator AI",
+        alt: `${siteConfig.name} preview`,
       },
     ],
-    locale: "id_ID",
+    locale: siteConfig.locale,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RPP Generator AI - Asisten Pembuat RPP",
-    description: "Susun draf RPP Kurikulum Merdeka & 2013 secara cepat, terstruktur, dan siap edit.",
-    images: ["/assets/rpp-kurikulum-image.png"],
+    title: `${siteConfig.title} | Draft RPP AI untuk Kurikulum Merdeka & K13`,
+    description: siteConfig.description,
+    images: [absoluteUrl(siteConfig.ogImage)],
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export const viewport: Viewport = {
+  themeColor: "#2563eb",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id">
       <body>

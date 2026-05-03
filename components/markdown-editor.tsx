@@ -2,72 +2,19 @@
 
 import dynamic from "next/dynamic";
 import { forwardRef } from "react";
-import type { ForwardedRef } from "react";
-import {
-  BlockTypeSelect,
-  BoldItalicUnderlineToggles,
-  CreateLink,
-  InsertTable,
-  ListsToggle,
-  MDXEditor,
-  type MDXEditorMethods,
-  type MDXEditorProps,
-  headingsPlugin,
-  linkDialogPlugin,
-  linkPlugin,
-  listsPlugin,
-  markdownShortcutPlugin,
-  quotePlugin,
-  tablePlugin,
-  thematicBreakPlugin,
-  toolbarPlugin,
-  UndoRedo,
-  Separator,
-} from "@mdxeditor/editor";
+import type { MDXEditorMethods, MDXEditorProps } from "@mdxeditor/editor";
 
-function InitializedMarkdownEditor({
-  editorRef,
-  ...props
-}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) {
-  return (
-    <MDXEditor
-      ref={editorRef}
-      plugins={[
-        headingsPlugin(),
-        listsPlugin(),
-        quotePlugin(),
-        thematicBreakPlugin(),
-        linkPlugin(),
-        linkDialogPlugin(),
-        tablePlugin(),
-        markdownShortcutPlugin(),
-        toolbarPlugin({
-          toolbarClassName: "rpp-mdx-toolbar",
-          toolbarContents: () => (
-            <>
-              <UndoRedo />
-              <Separator />
-              <BoldItalicUnderlineToggles />
-              <Separator />
-              <BlockTypeSelect />
-              <Separator />
-              <ListsToggle />
-              <Separator />
-              <CreateLink />
-              <InsertTable />
-            </>
-          ),
-        }),
-      ]}
-      contentEditableClassName="rpp-mdx-content"
-      {...props}
-    />
-  );
-}
-
-const ClientMarkdownEditor = dynamic(async () => InitializedMarkdownEditor, {
-  ssr: false,
-});
+const ClientMarkdownEditor = dynamic(
+  async () => import("@/components/markdown-editor-client").then((module) => module.MarkdownEditorClient),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="min-h-[780px] rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-sm text-slate-500">
+        Memuat editor markdown...
+      </div>
+    ),
+  },
+);
 
 export const MarkdownEditor = forwardRef<MDXEditorMethods, MDXEditorProps>((props, ref) => {
   return <ClientMarkdownEditor {...props} editorRef={ref} />;

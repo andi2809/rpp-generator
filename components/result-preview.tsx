@@ -1,11 +1,18 @@
 "use client";
 
-import { useRef } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import dynamic from "next/dynamic";
+import { useCallback, useRef } from "react";
 import { Copy, FileDown, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 import { exportMarkdownToDocx, exportPreviewToPdf } from "@/lib/exporters";
+
+const MarkdownRenderer = dynamic(
+  async () => import("@/components/markdown-renderer").then((module) => module.MarkdownRenderer),
+  {
+    ssr: false,
+    loading: () => <div className="text-sm text-slate-500">Memuat preview markdown...</div>,
+  },
+);
 
 export function ResultPreview({
   content,
@@ -18,21 +25,21 @@ export function ResultPreview({
 }) {
   const previewRef = useRef<HTMLDivElement>(null);
 
-  async function handleCopy() {
+  const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(content);
     toast.success("Hasil RPP berhasil disalin.");
-  }
+  }, [content]);
 
-  async function handleExportPdf() {
+  const handleExportPdf = useCallback(async () => {
     if (!previewRef.current) return;
     await exportPreviewToPdf(previewRef.current);
     toast.success("Ekspor PDF dimulai.");
-  }
+  }, []);
 
-  async function handleExportDocx() {
+  const handleExportDocx = useCallback(async () => {
     await exportMarkdownToDocx(content);
     toast.success("Dokumen DOCX berhasil dibuat.");
-  }
+  }, [content]);
 
   return (
     <div className="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
@@ -79,7 +86,7 @@ export function ResultPreview({
       </div>
 
       <div ref={previewRef} className="markdown-preview p-6 lg:p-8">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        <MarkdownRenderer content={content} />
       </div>
     </div>
   );

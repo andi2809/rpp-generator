@@ -4,13 +4,13 @@ export function Hero() {
       <div className="grid gap-8 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm lg:grid-cols-[1.3fr_0.7fr] lg:p-12">
         <div>
           <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
-            Production-ready SaaS foundation
+            AI lesson-planning workspace
           </span>
           <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-            Hasilkan RPP yang lebih rapi, konsisten, dan kontekstual dengan bantuan AI.
+            Hasilkan draft RPP yang rapi, konsisten, dan siap disunting dengan bantuan AI.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-            Isi konteks pembelajaran, unggah PDF referensi format sekolah atau contoh RPP, lalu biarkan AI menyusun dokumen RPP yang siap ditinjau.
+            Pilih kurikulum, isi konteks pembelajaran inti, lalu biarkan AI menyusun draft RPP yang bisa langsung Anda edit di markdown editor dan ekspor ke PDF atau DOCX.
           </p>
         </div>
 
@@ -18,9 +18,9 @@ export function Hero() {
           <h2 className="text-lg font-semibold text-slate-900">Fokus produk</h2>
           <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
             <li>• Tanpa login / register</li>
-            <li>• Fokus penuh pada generate RPP</li>
-            <li>• PDF referensi untuk struktur, aturan, dan gaya</li>
-            <li>• Output nyaman dibaca, dicopy, dan diekspor</li>
+            <li>• Fokus penuh pada generate draft RPP</li>
+            <li>• Mendukung Kurikulum Merdeka dan Kurikulum 2013</li>
+            <li>• Hasil nyaman dibaca, diedit, dan diekspor</li>
           </ul>
         </div>
       </div>
